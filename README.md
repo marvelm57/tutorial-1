@@ -1,0 +1,3 @@
+# Reflection 1
+Dalam mengimplementasikan fitur edit dan delete product, saya telah berfokus pada prinsip-prinsip clean code dan praktik pengkodean yang aman. Saya memperhatikan penamaan yang jelas dan deskriptif untuk variabel, metode, dan kelas, serta memanfaatkan dependency injection melalui fitur autowiring Spring. Penggunaan anotasi Spring juga membantu dalam mengatur dan membaca kode dengan lebih baik. Meskipun demikian, saya menyadari perlunya penambahan validasi input pada level controller untuk memastikan data yang diterima sesuai dengan yang diharapkan. Saya juga menyadari pentingnya penanganan yang lebih baik terhadap situasi ketika produk tidak ditemukan.
+# Reflection 2
