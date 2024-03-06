@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +41,7 @@ class PaymentTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
-                    "VOUCHER_CODE", order, paymentData);
+                    PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData);
         });
     }
 
@@ -60,8 +62,8 @@ class PaymentTest {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
         Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
-                "VOUCHER_CODE", order, paymentData, "SUCCESS");
-        assertEquals("SUCCESS", payment.getStatus());
+                PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
     }
 
     @Test
@@ -70,8 +72,8 @@ class PaymentTest {
         paymentData.put("voucherCode", "ESHOP1234ABCDEFG");
 
         Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
-                "VOUCHER_CODE", order, paymentData);
-        assertEquals("REJECTED", payment.getStatus());
+                PaymentMethod.VOUCHER_CODE.getValue(), order, paymentData);
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
@@ -81,7 +83,7 @@ class PaymentTest {
         paymentData.put("deliveryFee", null);
 
         Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
-                "CASH_ON_DELIVERY", order, paymentData);
-        assertEquals("REJECTED", payment.getStatus());
+                PaymentMethod.CASH_ON_DELIVERY.getValue(), order, paymentData);
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 }
