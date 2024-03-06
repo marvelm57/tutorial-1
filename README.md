@@ -31,3 +31,20 @@ Dalam mengimplementasikan fitur edit dan delete product, saya telah berfokus pad
    - Kode menjadi sulit untuk dipahami dan di-_maintain_ karena fokusnya yang tidak jelas. Contohnya akan sulit untuk membedakan fungsionalitas pada _controller_ jika tidak memisahkan class `CarController` dari `ProductController`.
    - Sebuah _class_ dapat terbebani dengan method yang tidak relevan membuat kode sulit dipelihara dan tidak fleksibel. Contohnya jika mengimplementasikan _irrelevant method_ dari `CarService` pada `ProductService`.
    - _Testing_ menjadi sulit dilakukan karena ketergantungan yang tinggi antar komponen. Contohnya jika menggunakan dependency `CarServiceImpl` daripada _interface_, maka akan sulit untuk mengisolasi komponen yang diuji karena terikat secara erat dengan implementasi konkret sehingga sulit untuk menggunakan _stub_ atau _mock_.
+
+# Module 4
+### Reflection 1
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+- Menurut saya alur TDD ini bermanfaat karena dengan menulis tes terlebih dahulu, saya dapat mengetahui struktur kode yang akan saya buat dengan lebih baik dan memastikan bahwa kode tersebut memenuhi kebutuhan fungsional yang diinginkan. Dengan menggunakan alur ini juga dapat mengurangi risiko _bug_ yang muncul karena setiap perubahan dalam kode diuji secara otomatis sehingga dapat menghemat waktu dan meningkatkan produktivitas. Selain itu, dengan alur TDD ini juga saya menerapkan refaktorisasi yang berkelanjutan yang memungkinkan kode untuk tetap bersih dan mudah dipahami.
+  
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+- **Fast**
+   - Testing yang telah saya buat berlajan dengan lancar sehingga memungkinkan saya untuk menjalankannya berulang kali dan mendapat _feedback_ dari setiap pengujian.
+- **Isolated/Independent**
+   - Setiap test case yang saya buat dapat berjalan secara _independent_ dan tidak memengaruhi hasil dari test case yang lain.
+- **Repeatable**
+   - Hasil test yang saya buat selalu konsisten ketika dijalankan berulang kali.
+- **Self-validating**
+   - Semua test memiliki output yang jelas. Hasilnya bisa dilihat dari red yang berarti failed dan green berarti passed.
+- **Thorough/Timely**
+   - Semua test dibuat sebelum _production code_ sehingga membuat saya lebih paham fungsionalitas dari kode yang akan dibuat.
