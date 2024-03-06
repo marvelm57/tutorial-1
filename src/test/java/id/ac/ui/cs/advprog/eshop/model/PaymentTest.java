@@ -1,6 +1,5 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
-import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +81,7 @@ class PaymentTest {
         paymentData.put("deliveryFee", null);
 
         Payment payment = new Payment("13652556-012a-4c07-b546-54eb1396d79b",
-                "VOUCHER_CODE", order, paymentData);
+                "CASH_ON_DELIVERY", order, paymentData);
         assertEquals("REJECTED", payment.getStatus());
     }
 }
