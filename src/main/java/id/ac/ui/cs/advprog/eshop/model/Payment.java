@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-class Payment {
+public class Payment {
     String id;
     String method;
     Order order;
