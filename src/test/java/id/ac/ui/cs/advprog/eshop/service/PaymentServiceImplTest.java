@@ -59,10 +59,11 @@ class PaymentServiceImplTest {
     @Test
     void testAddPayment() {
         Payment payment = payments.get(1);
-        doReturn(payment).when(paymentRepository).save(payment);
+        doReturn(payment).when(paymentRepository).save(any(Payment.class));
 
-        Payment result = paymentService.addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData());
-        verify(paymentRepository, times(1)).save(payment);
+        Payment result = paymentService.addPayment(payment.getId(), payment.getOrder(),
+                payment.getMethod(), payment.getPaymentData());
+        verify(paymentRepository, times(1)).save(any(Payment.class));
         assertEquals(payment.getId(), result.getId());
     }
 
@@ -71,7 +72,8 @@ class PaymentServiceImplTest {
         Payment payment = payments.get(1);
         doReturn(payment).when(paymentRepository).findById(payment.getId());
 
-        assertNull(paymentService.addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData()));
+        assertNull(paymentService.addPayment(payment.getId(), payment.getOrder(),
+                payment.getMethod(), payment.getPaymentData()));
         verify(paymentRepository, times(0)).save(payment);
     }
 
@@ -115,20 +117,11 @@ class PaymentServiceImplTest {
         doReturn(payment).when(paymentRepository).findById(payment.getId());
 
         assertThrows(IllegalArgumentException.class,
-                () -> paymentService.setStatus(payment.getId(), "MEOW"));
+                () -> paymentService.setStatus(payment, "MEOW"));
 
         verify(paymentRepository, times(0)).save(any(Payment.class));
     }
 
-    @Test
-    void testSetStatusInvalidOrderId() {
-        doReturn(null).when(paymentRepository).findById("zczc");
-
-        assertThrows(NoSuchElementException.class,
-                () -> paymentService.setStatus("zczc", OrderStatus.SUCCESS.getValue()));
-
-        verify(paymentRepository, times(0)).save(any(Payment.class));
-    }
 
     @Test
     void testFindByIdIfIdFound() {
